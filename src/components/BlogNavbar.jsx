@@ -1,59 +1,68 @@
-import React, { useState } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
 import {
-    Collapse,
-    Navbar,
-    NavbarToggler,
-    NavbarBrand,
-    Nav,
-    NavItem,
-    NavLink,
-    UncontrolledDropdown,
-    DropdownToggle,
-    DropdownMenu,
-    DropdownItem,
-    NavbarText,
-  } from 'reactstrap'; 
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+  NavbarText,
+} from "reactstrap";
 
-const BlogNavbar = ()=>{
+import { NavLink as ReactNavLink } from "react-router-dom";
 
+const BlogNavbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
 
-
-    return (
-        <div>
-          <Navbar color='info' dark expand="md">
-            <NavbarBrand href="/">reactstrap</NavbarBrand>
-            <NavbarToggler onClick={toggle} />
-            <Collapse isOpen={isOpen} navbar>
-              <Nav className="me-auto" navbar>
-                <NavItem>
-                  <NavLink href="/components/">Components</NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink href="https://github.com/reactstrap/reactstrap">
-                    GitHub
-                  </NavLink>
-                </NavItem>
-                <UncontrolledDropdown nav inNavbar>
-                  <DropdownToggle nav caret>
-                    Options
-                  </DropdownToggle>
-                  <DropdownMenu right>
-                    <DropdownItem>Option 1</DropdownItem>
-                    <DropdownItem>Option 2</DropdownItem>
-                    <DropdownItem divider />
-                    <DropdownItem>Reset</DropdownItem>
-                  </DropdownMenu>
-                </UncontrolledDropdown>
-              </Nav>
-              <NavbarText>Simple Text</NavbarText>
-            </Collapse>
-          </Navbar>
-        </div>
-      );
-}
+  return (
+    <div>
+      <Navbar color="info" dark expand="md">
+        <NavbarBrand tag={ReactNavLink} to="/">
+          MyBlog
+        </NavbarBrand>
+        <NavbarToggler onClick={toggle} />
+        <Collapse isOpen={isOpen} navbar>
+          <Nav className="me-auto" navbar>
+            <NavItem>
+              <NavLink tag={ReactNavLink} to="/">
+                Home
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink tag={ReactNavLink} to="/login">
+                Login
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink tag={ReactNavLink} to="/signup">
+                Signup
+              </NavLink>
+            </NavItem>
+            <UncontrolledDropdown nav inNavbar>
+              <DropdownToggle nav caret>
+                More
+              </DropdownToggle>
+              <DropdownMenu right>
+                <DropdownItem>Services</DropdownItem>
+                <DropdownItem>Contact Us</DropdownItem>
+                <DropdownItem divider />
+                <DropdownItem>Keep Learning</DropdownItem>
+              </DropdownMenu>
+            </UncontrolledDropdown>
+          </Nav>
+          <NavbarText>Profile</NavbarText>
+        </Collapse>
+      </Navbar>
+    </div>
+  );
+};
 
 export default BlogNavbar;
