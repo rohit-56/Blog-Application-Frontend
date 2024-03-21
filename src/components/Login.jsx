@@ -11,7 +11,42 @@ import {
   Button,
 } from "reactstrap";
 import Base from "./Base";
+import { useState } from "react";
+import { getTokenFromLoginDetails } from "./services/loginApi";
+
 const Login = () => {
+  const [loginDetails, setLoginDetails] = useState({
+    email: "",
+    password: "",
+  });
+
+  const resetLoginForm = () => {
+    setLoginDetails({
+      email: "",
+      password: "",
+    });
+  };
+
+  const handleLoginDetail = (event, fieldName) => {
+    console.log(event.target.value);
+    setLoginDetails({ ...loginDetails, [fieldName]: event.target.value });
+  };
+
+  const loginUser = (event) => {
+    event.preventDefault();
+
+    console.log(loginDetails);
+    getTokenFromLoginDetails(loginDetails)
+      .then((response) => {
+        console.log("Success", response);
+      })
+      .catch((error) => {
+        console.log("Error", error);
+      });
+
+    resetLoginForm();
+  };
+
   return (
     <Base>
       <Container className="mt-4">
@@ -23,7 +58,7 @@ const Login = () => {
         >
           <CardHeader>Login Page</CardHeader>
           <CardBody>
-            <Form>
+            <Form onSubmit={(e) => loginUser(e)}>
               <FormGroup row>
                 <Label for="exampleEmail" sm={2}>
                   Email
@@ -33,7 +68,11 @@ const Login = () => {
                     id="email"
                     name="email"
                     placeholder="Enter you email"
-                    type="email"
+                    type="text"
+                    value={loginDetails.email}
+                    onChange={(e) => {
+                      handleLoginDetail(e, "email");
+                    }}
                   />
                 </Col>
               </FormGroup>
@@ -47,11 +86,15 @@ const Login = () => {
                     name="password"
                     placeholder="Enter your password"
                     type="password"
+                    value={loginDetails.password}
+                    onChange={(e) => {
+                      handleLoginDetail(e, "password");
+                    }}
                   />
                 </Col>
               </FormGroup>
+              <Button>Login</Button>
             </Form>
-            <Button>Login</Button>
           </CardBody>
         </Card>
       </Container>
