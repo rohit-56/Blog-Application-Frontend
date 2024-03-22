@@ -13,6 +13,7 @@ import {
 import Base from "./Base";
 import { useState } from "react";
 import { getTokenFromLoginDetails } from "./services/loginApi";
+import { doLogin } from "./services/loggedIn";
 
 const Login = () => {
   const [loginDetails, setLoginDetails] = useState({
@@ -38,6 +39,9 @@ const Login = () => {
     console.log(loginDetails);
     getTokenFromLoginDetails(loginDetails)
       .then((response) => {
+        doLogin(response, () => {
+          console.log("User Data is set in localstorage");
+        });
         console.log("Success", response);
       })
       .catch((error) => {
