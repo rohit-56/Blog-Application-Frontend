@@ -12,8 +12,12 @@ import {
 } from "reactstrap";
 import Base from "./Base";
 import { useState } from "react";
+import { registerUser } from "./services/loginApi";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
+  const navigate = useNavigate();
+
   const [data, setData] = useState({
     username: "",
     email: "",
@@ -38,6 +42,15 @@ const Signup = () => {
   const submitForm = (e) => {
     e.preventDefault();
     console.log("Submitted");
+    registerUser(data)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    resetSignUpPage();
+    navigate("/login");
   };
 
   return (

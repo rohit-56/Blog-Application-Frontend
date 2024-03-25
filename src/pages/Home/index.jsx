@@ -3,6 +3,7 @@ import Header from "../../components/Home/Header";
 import SearchBar from "../../components/Home/SearchBar";
 import BlogList from "../../components/Home/BlogList";
 import { blogList } from "../../config/data";
+import Base from "../../components/Base";
 
 const Home = () => {
   const [blogs, setBlogs] = useState(blogList);
@@ -28,21 +29,23 @@ const Home = () => {
   };
 
   return (
-    <div>
-      {/* Header Component */}
-      <Header />
+    <Base>
+      <div>
+        {/* Header Component */}
+        <Header />
 
-      {/* Search Bar Component */}
-      <SearchBar
-        value={searchKey}
-        clearSearch={clearSearchBar}
-        handleSearchKey={(e) => setSearchKey(e.target.value)}
-        formSubmit={handleSearchSubmit}
-      />
+        {/* Search Bar Component */}
+        <SearchBar
+          value={searchKey}
+          clearSearch={clearSearchBar}
+          handleSearchKey={(e) => setSearchKey(e.target.value)}
+          formSubmit={handleSearchSubmit}
+        />
 
-      {/* Blog List Component */}
-      <BlogList blogs={blogs} />
-    </div>
+        {/* Blog List Component */}
+        <BlogList blogs={blogs} />
+      </div>
+    </Base>
   );
 };
 
