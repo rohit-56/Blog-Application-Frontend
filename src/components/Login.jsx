@@ -14,8 +14,11 @@ import Base from "./Base";
 import { useState } from "react";
 import { getTokenFromLoginDetails } from "./services/loginApi";
 import { doLogin } from "./services/loggedIn";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
+
   const [loginDetails, setLoginDetails] = useState({
     email: "",
     password: "",
@@ -42,6 +45,8 @@ const Login = () => {
         doLogin(response, () => {
           console.log("User Data is set in localstorage");
         });
+        //redirect user to user dashboard after successfully login
+        navigate("/user/dashboard");
         console.log("Success", response);
       })
       .catch((error) => {
