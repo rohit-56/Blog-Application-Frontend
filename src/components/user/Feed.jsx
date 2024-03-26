@@ -1,12 +1,12 @@
 import React from "react";
 import Base from "../Base";
 
-const ProfileInfo = () => {
+const Feed = () => {
   return (
     <Base>
-      <div>ProfileInfo</div>
+      <div>Feed</div>;
     </Base>
   );
 };
 
-export default ProfileInfo;
+export default Feed;
