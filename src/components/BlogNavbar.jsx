@@ -47,10 +47,21 @@ const BlogNavbar = () => {
         </NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
+          {userIn && (
+            <>
+              <Nav className="mx-2" navbar>
+                <NavItem>
+                  <NavLink tag={ReactNavLink} to="/user/home">
+                    Home
+                  </NavLink>
+                </NavItem>
+              </Nav>
+            </>
+          )}
           <Nav className="me-auto mx-2" navbar>
             <NavItem>
               <NavLink tag={ReactNavLink} to="/">
-                Home
+                Feeds
               </NavLink>
             </NavItem>
 
@@ -70,6 +81,13 @@ const BlogNavbar = () => {
           {userIn && (
             <>
               <Nav className="mx-2" navbar>
+                <NavLink
+                  tag={ReactNavLink}
+                  to="/user/addpost"
+                  style={{ cursor: "pointer", color: "white" }}
+                >
+                  Write
+                </NavLink>
                 <NavLink
                   tag={ReactNavLink}
                   to="/login"

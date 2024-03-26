@@ -12,7 +12,7 @@ import {
 } from "reactstrap";
 import Base from "./Base";
 import { useState } from "react";
-import { getTokenFromLoginDetails } from "./services/loginApi";
+import { getTokenFromLoginDetails } from "./services/user-service";
 import { doLogin } from "./services/loggedIn";
 import { useNavigate } from "react-router-dom";
 

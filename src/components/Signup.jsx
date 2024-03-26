@@ -12,7 +12,7 @@ import {
 } from "reactstrap";
 import Base from "./Base";
 import { useState } from "react";
-import { registerUser } from "./services/loginApi";
+import { registerUser } from "./services/user-service";
 import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
