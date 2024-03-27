@@ -9,7 +9,7 @@ const BlogItem = ({
     title,
     category,
     subCategory,
-    description,
+    content,
     authorName,
     authorAvatar,
     createdAt,
@@ -18,13 +18,20 @@ const BlogItem = ({
 }) => {
   return (
     <div className="blogItem-wrap">
-      <img className="blogItem-cover" src={cover} alt="cover" />
+      <img
+        className="blogItem-cover"
+        src="/assets/images/designer-1.jpg"
+        alt="cover"
+      />
       <Chip label={category} />
       <h3>{title}</h3>
-      <p className="blogItem-desc">{description}</p>
+      <p
+        className="blogItem-desc"
+        dangerouslySetInnerHTML={{ __html: content }}
+      ></p>
       <footer>
         <div className="blogItem-author">
-          <img src={authorAvatar} alt="avatar" />
+          <img src="/assets/images/author.jpg" alt="avatar" />
           <div>
             <h6>{authorName}</h6>
             <p>{createdAt}</p>
