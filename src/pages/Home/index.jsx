@@ -4,6 +4,7 @@ import SearchBar from "../../components/Home/SearchBar";
 import BlogList from "../../components/Home/BlogList";
 import { blogList } from "../../config/data";
 import Base from "../../components/Base";
+import { Container } from "reactstrap";
 
 const Home = () => {
   const [blogs, setBlogs] = useState(blogList);
@@ -30,7 +31,7 @@ const Home = () => {
 
   return (
     <Base>
-      <div>
+      <Container>
         {/* Header Component */}
         <Header />
 
@@ -44,7 +45,7 @@ const Home = () => {
 
         {/* Blog List Component */}
         <BlogList blogs={blogs} />
-      </div>
+      </Container>
     </Base>
   );
 };
