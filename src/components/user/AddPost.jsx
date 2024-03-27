@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Base from "../Base";
 import JoditEditor from "jodit-react";
 import {
@@ -10,7 +10,23 @@ import {
   Col,
   Button,
 } from "reactstrap";
+import { getAllCategories } from "../services/category-service";
+import { getUserDetails } from "../services/loggedIn";
+import { createBlog, getAllBlog } from "../services/post-service";
 const AddPost = () => {
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    getAllCategories()
+      .then((response) => {
+        console.log(response);
+        setCategories(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
   const editor = useRef(null);
   // const [content, setContent] = useState("");
 
@@ -34,9 +50,25 @@ const AddPost = () => {
     //setContent("");
   };
 
+  const fetchUserAndTokenDetails = () => {
+    return JSON.parse(getUserDetails());
+  };
   const submitPostForm = (event) => {
     event.preventDefault();
     console.log(postDetails);
+
+    const userAndTokenDetails = fetchUserAndTokenDetails();
+    const details = postDetails;
+    details.userId = userAndTokenDetails.userId;
+    details.token = userAndTokenDetails.token;
+    console.log(details);
+    createBlog(details)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -79,16 +111,24 @@ const AddPost = () => {
             <Col sm={10}>
               <Input
                 id="exampleSelect"
-                name="select"
+                name="category"
                 type="select"
                 defaultValue={0}
+                onChange={(e) => {
+                  setPostDetails({
+                    ...postDetails,
+                    categoryId: e.target.value,
+                  });
+                }}
               >
                 <option disabled value={0}>
                   --Select Category--
                 </option>
-                <option value={1}>1</option>
-                <option value={2}>2</option>
-                <option value={3}>3</option>
+                {categories.map((category) => (
+                  <option value={category.id} key={category.id}>
+                    {category.title}
+                  </option>
+                ))}
               </Input>
             </Col>
           </FormGroup>
