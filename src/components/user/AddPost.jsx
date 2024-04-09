@@ -12,7 +12,8 @@ import {
 } from "reactstrap";
 import { getAllCategories } from "../services/category-service";
 import { getUserDetails } from "../services/loggedIn";
-import { createBlog, getAllBlog } from "../services/post-service";
+import { createBlog } from "../services/post-service";
+
 const AddPost = () => {
   const [categories, setCategories] = useState([]);
 
@@ -33,8 +34,10 @@ const AddPost = () => {
   const [postDetails, setPostDetails] = useState({
     title: "",
     content: "",
-    categoryId: "",
+    categoryId: "default",
   });
+
+  const [blogCover, setBlogCover] = useState(null);
 
   const handleEventOnChange = (event, fieldName) => {
     console.log(event.target.value);
@@ -45,15 +48,15 @@ const AddPost = () => {
     setPostDetails({
       title: "",
       content: "",
-      categoryId: "",
+      categoryId: "default",
     });
-    //setContent("");
+    setBlogCover(null);
   };
 
   const fetchUserAndTokenDetails = () => {
     return JSON.parse(getUserDetails());
   };
-  const submitPostForm = (event) => {
+  const submitPostForm = async (event) => {
     event.preventDefault();
     console.log(postDetails);
 
@@ -62,13 +65,16 @@ const AddPost = () => {
     details.userId = userAndTokenDetails.userId;
     details.token = userAndTokenDetails.token;
     console.log(details);
-    createBlog(details)
+    console.log(blogCover);
+    createBlog(details, blogCover)
       .then((response) => {
         console.log(response);
       })
       .catch((error) => {
         console.log(error);
       });
+
+    resetPostForm();
   };
 
   return (
@@ -91,6 +97,22 @@ const AddPost = () => {
               }}
             />
           </FormGroup>
+
+          <FormGroup>
+            <Label for="blogCover" tag="h5">
+              Upload Blog Cover
+            </Label>
+            <Input
+              id="blogCover"
+              name="file"
+              type="file"
+              onChange={(e) => {
+                console.log(e.target.files);
+                setBlogCover(e.target.files[0]);
+              }}
+            />
+          </FormGroup>
+
           <FormGroup tag="h5">
             <Label for="content">Write Content</Label>
             <JoditEditor
@@ -113,7 +135,7 @@ const AddPost = () => {
                 id="exampleSelect"
                 name="category"
                 type="select"
-                defaultValue={0}
+                value={postDetails.categoryId}
                 onChange={(e) => {
                   setPostDetails({
                     ...postDetails,
@@ -121,7 +143,7 @@ const AddPost = () => {
                   });
                 }}
               >
-                <option disabled value={0}>
+                <option disabled value="default">
                   --Select Category--
                 </option>
                 {categories.map((category) => (
