@@ -20,7 +20,7 @@ const BlogItem = ({
     <div className="blogItem-wrap">
       <img
         className="blogItem-cover"
-        src="/assets/images/designer-1.jpg"
+        src={`data:image/png;base64,${cover}`}
         alt="cover"
       />
       <Chip label={category} />
