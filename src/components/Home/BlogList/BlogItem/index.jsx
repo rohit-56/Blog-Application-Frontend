@@ -16,6 +16,29 @@ const BlogItem = ({
     cover,
   },
 }) => {
+  const [blogDetails, setBlogDetails] = useState({
+    id: "",
+    title: "",
+    category: "",
+    subCategory: "",
+    content: "",
+    authorName: "",
+    authorAvatar: "",
+    createdAt: "",
+    cover: "",
+    defaultDataflag: "",
+  });
+
+  useEffect(() => {
+    setBlogDetails({
+      id: id,
+      title: title,
+      category: category,
+      content: content,
+      createdAt: createdAt,
+      cover: cover,
+    });
+  }, []);
   return (
     <div className="blogItem-wrap">
       <img
