@@ -8,6 +8,7 @@ import UserHome from "./components/user/UserHome";
 import Home from "./pages/Home";
 import AddPost from "./components/user/AddPost";
 import Feed from "./components/user/Feed";
+import ProfileInfo from "./components/user/ProfileInfo";
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
         <Route path="dashboard" element={<Home />} />
         <Route path="addpost" element={<AddPost />} />
         <Route path="home" element={<Home />} />
+        <Route path="user-profile" element={<ProfileInfo />} />
       </Route>
     </Routes>
   );
