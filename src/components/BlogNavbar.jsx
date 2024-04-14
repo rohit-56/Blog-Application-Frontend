@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { FaSearch } from "react-icons/fa";
 import {
   Collapse,
   Navbar,
@@ -40,82 +41,119 @@ const BlogNavbar = () => {
   }, [userIn]);
 
   return (
-    <div>
-      <Navbar color="info" dark expand="md">
-        <NavbarBrand tag={ReactNavLink} to="/">
-          MyBlog
-        </NavbarBrand>
-        <NavbarToggler onClick={toggle} />
-        <Collapse isOpen={isOpen} navbar>
-          {userIn && (
-            <>
-              <Nav className="mx-2" navbar>
-                <NavItem>
-                  <NavLink tag={ReactNavLink} to="/user/home">
-                    Home
-                  </NavLink>
-                </NavItem>
-              </Nav>
-            </>
-          )}
-          <Nav className="me-auto mx-2" navbar>
-            <NavItem>
-              <NavLink tag={ReactNavLink} to="/">
-                Feeds
+    <Navbar
+      expand="md"
+      color="#ffffff"
+      sticky="top"
+      style={{
+        backgroundColor: "#e35726",
+        borderBottom: "1px solid #ffffff",
+        color: "#ffffff !important",
+      }}
+    >
+      <NavbarBrand tag={ReactNavLink} to="/" style={{ color: "#ffffff" }}>
+        MyBlog
+      </NavbarBrand>
+      <NavbarToggler onClick={toggle} />
+      <Collapse isOpen={isOpen} navbar>
+        {userIn && (
+          <>
+            <Nav className="mx-2" navbar>
+              <NavItem>
+                <NavLink
+                  tag={ReactNavLink}
+                  to="/user/home"
+                  style={{ color: "#ffffff" }}
+                >
+                  Home
+                </NavLink>
+              </NavItem>
+            </Nav>
+          </>
+        )}
+        <Nav className="me-auto mx-2" navbar>
+          <NavItem>
+            <NavLink tag={ReactNavLink} to="/" style={{ color: "#ffffff" }}>
+              Feeds
+            </NavLink>
+          </NavItem>
+          <NavItem
+            className="mt-1 mx-3"
+            style={{ backgroundColor: "#ffffff", borderRadius: "50px" }}
+          >
+            <FaSearch className="search-icon mx-1" style={{ color: "grey" }} />
+            <input
+              className="p-1"
+              type="text"
+              placeholder="Search By Category"
+              style={{
+                backgroundColor: "#ffffff",
+                border: "none",
+                borderRadius: "50px",
+                outline: "none",
+              }}
+            ></input>
+          </NavItem>
+        </Nav>
+
+        {userIn && (
+          <>
+            <Nav className="mx-2" navbar>
+              <NavLink
+                tag={ReactNavLink}
+                to="/user/addpost"
+                style={{ cursor: "pointer", color: "#ffffff" }}
+              >
+                Write
               </NavLink>
-            </NavItem>
+              <NavLink
+                tag={ReactNavLink}
+                to="/login"
+                onClick={handleLogout}
+                style={{ cursor: "pointer", color: "#ffffff" }}
+              >
+                Logout
+              </NavLink>
+              <UncontrolledDropdown nav inNavbar>
+                <DropdownToggle nav caret style={{ color: "#ffffff" }}>
+                  More
+                </DropdownToggle>
+                <DropdownMenu right>
+                  <DropdownItem tag={ReactNavLink} to="/user/user-profile">
+                    Profile
+                  </DropdownItem>
+                  <DropdownItem divider />
+                  <DropdownItem>Contact Us</DropdownItem>
+                  <DropdownItem>Linkedln</DropdownItem>
+                </DropdownMenu>
+              </UncontrolledDropdown>
+            </Nav>
+          </>
+        )}
 
-            <UncontrolledDropdown nav inNavbar>
-              <DropdownToggle nav caret>
-                More
-              </DropdownToggle>
-              <DropdownMenu right>
-                <DropdownItem>Services</DropdownItem>
-                <DropdownItem divider />
-                <DropdownItem>Contact Us</DropdownItem>
-                <DropdownItem>Linkedln</DropdownItem>
-              </DropdownMenu>
-            </UncontrolledDropdown>
-          </Nav>
+        {!userIn && (
+          <>
+            <Nav navbar>
+              <NavLink
+                tag={ReactNavLink}
+                to="/login"
+                style={{ color: "#ffffff" }}
+              >
+                Login
+              </NavLink>
 
-          {userIn && (
-            <>
-              <Nav className="mx-2" navbar>
-                <NavLink
-                  tag={ReactNavLink}
-                  to="/user/addpost"
-                  style={{ cursor: "pointer", color: "white" }}
-                >
-                  Write
-                </NavLink>
-                <NavLink
-                  tag={ReactNavLink}
-                  to="/login"
-                  onClick={handleLogout}
-                  style={{ cursor: "pointer", color: "white" }}
-                >
-                  Logout
-                </NavLink>
-              </Nav>
-            </>
-          )}
-
-          {!userIn && (
-            <>
-              <Nav navbar>
-                <NavLink tag={ReactNavLink} to="/login">
-                  Login
-                </NavLink>
-
-                <NavLink tag={ReactNavLink} to="/signup">
-                  Signup
-                </NavLink>
-              </Nav>
-            </>
-          )}
-        </Collapse>
-      </Navbar>
-    </div>
+              <NavLink
+                tag={ReactNavLink}
+                to="/signup"
+                style={{ color: "#ffffff" }}
+              >
+                Signup
+              </NavLink>
+            </Nav>
+          </>
+        )}
+      </Collapse>
+    </Navbar>
   );
 };
 
