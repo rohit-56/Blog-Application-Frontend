@@ -6,7 +6,6 @@
     width: 100%;
     height: 250px;
     object-fit: cover;
-    border-radius: 20px;
     margin-bottom: 0.5rem;
   }
   .blogItem-wrap h3 {

@@ -46,14 +46,6 @@ const Feed = () => {
         {/* Header Component */}
         <Header />
 
-        {/* Search Bar Component */}
-        <SearchBar
-          value={searchKey}
-          clearSearch={clearSearchBar}
-          handleSearchKey={(e) => setSearchKey(e.target.value)}
-          formSubmit={handleSearchSubmit}
-        />
-
         {/* Blog List Component */}
         <BlogList blogs={blogs} />
       </Container>

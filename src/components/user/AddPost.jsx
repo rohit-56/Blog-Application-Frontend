@@ -79,7 +79,9 @@ const AddPost = () => {
 
   return (
     <Base>
-      <Container>
+      <Container
+        style={{ border: "2px", borderStyle: "solid", borderRadius: "2px" }}
+      >
         <Form onSubmit={(event) => submitPostForm(event)}>
           <FormGroup tag="h2">
             <Label for="header">What going on your mind ?</Label>

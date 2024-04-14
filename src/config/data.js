@@ -10,6 +10,7 @@ export const blogList = [
     authorAvatar: "/assets/images/author.jpg",
     createdAt: "June 03, 2021",
     cover: "/assets/images/designer-1.jpg",
+    defaultDataflag: true,
   },
   {
     id: 2,
@@ -22,6 +23,7 @@ export const blogList = [
     authorAvatar: "/assets/images/author.jpg",
     createdAt: "June 03, 2021",
     cover: "/assets/images/f67396fc3cfce63a28e07ebb35d974ac.jpg",
+    defaultDataflag: true,
   },
   {
     id: 3,
@@ -34,6 +36,7 @@ export const blogList = [
     authorAvatar: "/assets/images/author.jpg",
     createdAt: "June 03, 2021",
     cover: "/assets/images/fQwuyKJ9qxjSbr6REcgtmW-1200-80.jpg",
+    defaultDataflag: true,
   },
   {
     id: 4,
@@ -46,6 +49,7 @@ export const blogList = [
     authorAvatar: "/assets/images/author.jpg",
     createdAt: "June 03, 2021",
     cover: "/assets/images/graphic-design-trends.png",
+    defaultDataflag: true,
   },
   {
     id: 5,
@@ -58,6 +62,7 @@ export const blogList = [
     authorAvatar: "/assets/images/author.jpg",
     createdAt: "June 03, 2021",
     cover: "/assets/images/make-it-personal.jpg",
+    defaultDataflag: true,
   },
   {
     id: 6,
@@ -71,6 +76,7 @@ export const blogList = [
     createdAt: "June 03, 2021",
     cover:
       "/assets/images/Purple-Combination-colors-graphic-design-predictions-1024x576-1024x576.jpg",
+    defaultDataflag: true,
   },
   {
     id: 7,
@@ -83,5 +89,6 @@ export const blogList = [
     authorAvatar: "/assets/images/author.jpg",
     createdAt: "June 03, 2021",
     cover: "/assets/images/Synthwave-Postmodern.jpg",
+    defaultDataflag: true,
   },
 ];

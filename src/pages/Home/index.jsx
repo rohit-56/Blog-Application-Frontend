@@ -5,6 +5,7 @@ import BlogList from "../../components/Home/BlogList";
 import { blogList } from "../../config/data";
 import Base from "../../components/Base";
 import { Container } from "reactstrap";
+import homeCover from "../../config/homeCover.jpg";
 
 const Home = () => {
   const [blogs, setBlogs] = useState(blogList);
@@ -31,18 +32,13 @@ const Home = () => {
 
   return (
     <Base>
+      <img
+        alt="home-cover"
+        src={`${homeCover}`}
+        style={{ height: "550px", width: "100%" }}
+      />
+
       <Container>
-        {/* Header Component */}
-        <Header />
-
-        {/* Search Bar Component */}
-        <SearchBar
-          value={searchKey}
-          clearSearch={clearSearchBar}
-          handleSearchKey={(e) => setSearchKey(e.target.value)}
-          formSubmit={handleSearchSubmit}
-        />
-
         {/* Blog List Component */}
         <BlogList blogs={blogs} />
       </Container>
